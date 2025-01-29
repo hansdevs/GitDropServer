@@ -3,5 +3,3 @@ A self-hosted Git file drop system that lets you upload files via a web UI on a 
 
 #**.HG**
 Personal Project with the objective of streamlining C.S Related Projects in a more efficient way
-
-# Look at FlowChart
