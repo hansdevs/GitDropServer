@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GitHub Dropbox</title>
+  <!-- Bootstrap CSS (CDN) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container py-5">
+    <h1 class="mb-4 text-center">GitHub Dropbox</h1>
+    <!-- Repository Name Input -->
+    <div class="form-group">
+      <label for="repoName">Repository Name</label>
+      <input 
+        type="text"
+        id="repoName"
+        class="form-control"
+        placeholder="Enter repository name..."
+      />
+    </div>
+    <!-- README File -->
+    <div class="form-group">
+      <label for="readmeInput">README File</label>
+      <div class="dropzone" id="readmeDropzone">
+        <p>Drag &amp; drop README (.txt or .md) <br> or click to select.</p>
+        <input
+          type="file"
+          id="readmeInput"
+          class="file-input"
+          accept=".txt, .md"
+        />
+      </div>
+      <small class="text-muted" id="readmeFeedback">No file selected</small>
+    </div>
+    <!-- Main File Dropbox (accepts everything) -->
+    <div class="form-group">
+      <label for="mainFilesInput">Main Files</label>
+      <div class="dropzone" id="mainFilesDropzone">
+        <p>Drag &amp; drop your files here <br> or click to select.</p>
+        <input
+          type="file"
+          id="mainFilesInput"
+          class="file-input"
+          multiple
+        />
+      </div>
+      <small class="text-muted" id="mainFilesFeedback">No files selected</small>
+    </div>
+    <div class="form-group">
+      <label for="scheduleUpload">Schedule Upload</label>
+      <input
+        type="datetime-local"
+        id="scheduleUpload"
+        class="form-control"
+      />
+    </div>
+    <button id="submitBtn" type="button" class="btn btn-primary btn-block">
+      Submit
+    </button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

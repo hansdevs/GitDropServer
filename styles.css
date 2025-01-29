@@ -1,0 +1,36 @@
+body {
+  background-color: #fafafa;
+}
+/* Dropzone styles */
+.dropzone {
+  border: 2px dashed #6c757d;
+  border-radius: 6px;
+  padding: 25px;
+  text-align: center;
+  position: relative;
+  margin-bottom: 15px;
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+.dropzone:hover {
+  border-color: #343a40;
+}
+.dropzone p {
+  margin: 0;
+  font-size: 1rem;
+  color: #6c757d;
+}
+/* Hide the default file input */
+.file-input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+.dropzone.dragover {
+  background-color: #e9ecef;
+  border-color: #007bff;
+}
