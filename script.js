@@ -9,14 +9,12 @@
 /* Globals to store user-selected files */
 let readmeFile = null;
 let mainFiles = [];
-
 /* === Utility Functions === */
 function isReadmeFileValid(file) {
   const allowedExtensions = ['.txt', '.md'];
   const fileName = file.name.toLowerCase();
   return allowedExtensions.some(ext => fileName.endsWith(ext));
 }
-
 function updateReadmeFeedback() {
   const feedbackEl = document.getElementById('readmeFeedback');
   if (readmeFile) {
@@ -27,7 +25,6 @@ function updateReadmeFeedback() {
     feedbackEl.classList.remove('text-danger');
   }
 }
-
 function updateMainFilesFeedback() {
   const feedbackEl = document.getElementById('mainFilesFeedback');
   if (mainFiles.length > 0) {
@@ -42,8 +39,10 @@ function updateMainFilesFeedback() {
 function setupDropzone(dropzoneId, fileInputId, onDropCallback) {
   const dropzone = document.getElementById(dropzoneId);
   const fileInput = document.getElementById(fileInputId);
+
   // Click on dropzone => open file dialog
   dropzone.addEventListener('click', () => fileInput.click());
+
   // Input change (user selected files via dialog)
   fileInput.addEventListener('change', (e) => {
     onDropCallback(e.target.files);
@@ -88,13 +87,17 @@ function handleMainFilesDrop(files) {
 document.addEventListener('DOMContentLoaded', () => {
   setupDropzone('readmeDropzone', 'readmeInput', handleReadmeDrop);
   setupDropzone('mainFilesDropzone', 'mainFilesInput', handleMainFilesDrop);
-  // Initialize feedback text
   updateReadmeFeedback();
   updateMainFilesFeedback();
-  // Submit event: Send data to Pi
+  // === Dark Mode Toggle ===
+  const themeSwitch = document.getElementById('themeSwitch');
+  themeSwitch.addEventListener('change', () => {
+    document.body.classList.toggle('dark-mode', themeSwitch.checked);
+  });
   const submitBtn = document.getElementById('submitBtn');
   submitBtn.addEventListener('click', async () => {
     const repoName = document.getElementById('repoName').value.trim();
+    const commitMsg = document.getElementById('commitMsg').value.trim();
     const scheduleValue = document.getElementById('scheduleUpload').value;
     // Basic checks
     if (!repoName) {
@@ -112,10 +115,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Build FormData
     const formData = new FormData();
     formData.append('repoName', repoName);
+    formData.append('commitMsg', commitMsg || 'Auto commit'); // fallback if empty
     formData.append('scheduleTime', scheduleValue);
     formData.append('readmeFile', readmeFile);
     mainFiles.forEach((file) => formData.append('mainFiles[]', file));
-    const piEndpoint = 'http://192.168.1.123:8080/upload';    // Replace with Pi's actual IP/port
+    // Adjust RPi IP/port
+    //const piEndpoint = 'http://123.456.7.890:8080/upload';
     try {
       const response = await fetch(piEndpoint, {
         method: 'POST',
@@ -125,10 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
         throw new Error(`Server error: ${response.statusText}`);
       }
       const result = await response.json();
-      alert('Submission successful! ' + JSON.stringify(result));
+      console.log(result);
+      alert('Submission successful!\n' + JSON.stringify(result));
     } catch (err) {
       console.error(err);
-      alert('Failed to upload: ' + err.message);
+      alert('Failed to upload:\n' + err.message);
     }
   });
 });
