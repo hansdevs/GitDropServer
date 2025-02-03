@@ -71,22 +71,15 @@ def trigger_windows_server(folder_path, repo_name):
       3) Copy files to a shared folder, then run a remote PowerShell script.
     """
     print(f"[Pi] Time to push {repo_name} from {folder_path} to GitHub via Windows server...")
-
-
     # Example (SSH using 'ssh' command) - you'll need to set up key-based auth:
     # subprocess.run(["ssh", "windowsUser@192.168.1.200", 
     #                "powershell.exe", 
     #                "C:\\scripts\\doGitPush.ps1", folder_path, repo_name])
     # For now, just print
-
-
     print("[Pi] Triggering Windows (example) complete.")
 if __name__ == '__main__':
     # Run Flask on all interfaces, port 8080
     app.run(host='0.0.0.0', port=8080, debug=False)
-
-
-
 '''
 Later on run this server on the Raspberry Pi.
 
@@ -99,3 +92,4 @@ python server.py
 # Pi will listen on port 8080
 # From mac Mac, you can access http://<Pi-IP>:8080/upload
 '''
+#missing function -- add later
