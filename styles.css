@@ -1,7 +1,14 @@
 body {
   background-color: #fafafa;
+  color: #212529;
+  transition: background-color 0.3s, color 0.3s;
 }
-/* Dropzone styles */
+
+.navbar-light .navbar-brand,
+.navbar-light .navbar-nav .nav-link {
+  color: #212529;
+}
+
 .dropzone {
   border: 2px dashed #6c757d;
   border-radius: 6px;
@@ -20,7 +27,6 @@ body {
   font-size: 1rem;
   color: #6c757d;
 }
-/* Hide the default file input */
 .file-input {
   opacity: 0;
   position: absolute;
@@ -33,4 +39,35 @@ body {
 .dropzone.dragover {
   background-color: #e9ecef;
   border-color: #007bff;
+}
+
+body.dark-mode {
+  background-color: #212529;
+  color: #fff;
+}
+
+body.dark-mode .navbar {
+  background-color: #343a40 !important;
+}
+body.dark-mode .navbar-light .navbar-brand,
+body.dark-mode .navbar-light .navbar-nav .nav-link,
+body.dark-mode .custom-control-label {
+  color: #f8f9fa;
+}
+
+body.dark-mode .dropzone {
+  border-color: #adb5bd;
+}
+body.dark-mode .dropzone p {
+  color: #adb5bd;
+}
+body.dark-mode .dropzone.dragover {
+  background-color: #495057;
+  border-color: #0d6efd;
+}
+
+body.dark-mode .form-control {
+  background-color: #495057;
+  color: #fff;
+  border: 1px solid #6c757d;
 }
